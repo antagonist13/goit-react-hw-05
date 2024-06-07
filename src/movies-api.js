@@ -4,7 +4,7 @@ axios.defaults.baseURL = "https://api.themoviedb.org/3";
 const ACESS_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YjRiY2QwNTg4YzE4MWE3NTAwMDk3MzhiNjQ2MDBjNyIsInN1YiI6IjY2NjMyNzQ4M2VjNzk2YWI3NjE0ZmM3ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6wE9XVMKUlpEUmGCB_RwR2MwQwC1A6qGjx6P57kh1Uc'
 
 export const getTrendingMovies = async ( ) => {
-  const response = await axios.get("/trending/movie/week", {
+  const response = await axios.get("/trending/movie/day", {
       params: {
           language: 'en-US',
       },

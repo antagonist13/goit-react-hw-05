@@ -1,0 +1,12 @@
+.navigation {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.link {
+  display: block;
+}
+.active {
+  display: block;
+  color: red;
+}
