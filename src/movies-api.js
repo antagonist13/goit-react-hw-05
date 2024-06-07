@@ -14,7 +14,7 @@ export const getTrendingMovies = async ( ) => {
   });
   return response;
 };
-export const getSarchedMovies = async ( query ) => {
+export const getSearchedMovies = async ( query ) => {
   const response = await axios.get("/search/movie", {
     params: {
       query: query,

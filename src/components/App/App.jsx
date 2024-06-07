@@ -27,21 +27,12 @@ return <div className={css.container}>
 // import { getTrendingMovies, getSarchedMovies, getMovieDetails, getMovieCredits, getMovieReviews } from '../../movies-api'
 // import { useState } from 'react';
 
-  // const [trendMovies, setTrendMovies] = useState();
+
   // const [searchingMovies, setSearchingMovies] = useState();
   // const [movieDetails, setMovieDetails] = useState();
   // const [movieCredits, setMovieCredits] = useState();
   // const [movieReviews, setMovieReviews] = useState();
 
-  //   const  handleTrendMovies = async () => {
-  //   await getTrendingMovies()
-  //     .then(list => {
-  //       setTrendMovies(list.data.results)
-  //     })
-  //       .finally(() => {
-  //           console.log(trendMovies);
-  //         })
-  // }
   //     const handleSearchMovies = async () => {
   //   await getSarchedMovies('batman')
   //     .then(list => {
