@@ -11,8 +11,9 @@ export default function MoviesPage() {
   console.log(locationQuery);
 
   const [searchingMovies, setSearchingMovies] = useState([]);
-  const [searchQuery, setsearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
   const [searchParms, setSearchParams] = useSearchParams();
+
   useEffect(() => {
     async function handleSearchedMovies() {
     try {
@@ -29,7 +30,7 @@ export default function MoviesPage() {
   const handleSubmit = (query) => {
       searchParms.set('query', query)
       setSearchParams(searchParms)
-      setsearchQuery(query)
+      setSearchQuery(query)
       getSearchedMovies(searchQuery)
 }
   return <div>
