@@ -1,7 +1,7 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { getTrendingMovies } from '../../movies-api'
 import { useEffect, useState } from 'react';
-import css from './HomePage.module.css'
+import MovieList from '../../components/MovieList/MovieList'
 export default function HomePage() {
   const [trendMovies, setTrendMovies] = useState([]);
   const location = useLocation();
@@ -18,14 +18,6 @@ export default function HomePage() {
   }, []);
   return <div >
     <h2>Trending today</h2>
-    <ul>
-      {trendMovies.map((movie) => (
-        <li key={movie.id}>
-          <Link to={`/movies/${movie.id}`} state={location}>
-            <p className={css.hotPink}>{movie.title}</p>
-              </Link>
-          </li>
-      ))}
-    </ul>
+    <MovieList moviesList={trendMovies} location={location}/>
 </div>
 }

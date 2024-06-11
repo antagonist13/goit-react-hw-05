@@ -1,7 +1,8 @@
 import { Field, Form, Formik } from "formik";
 import { useState, useEffect } from "react";
 import { getSearchedMovies } from '../../movies-api'
-import { Link, useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
+import MovieList from '../../components/MovieList/MovieList'
 import css from './MoviesPage.module.css'
 
 export default function MoviesPage() {
@@ -54,15 +55,7 @@ export default function MoviesPage() {
           <button type="submit" className={css.searchBtn}>Search</button>
         </Form>
       </Formik>
-      <ul>
-        {searchingMovies.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`} state={location}>
-              <p className={css.movie}>{movie.title}</p>
-              </Link>
-          </li>
-        ))}
-      </ul>
+    <MovieList moviesList={searchingMovies} location={location}/>
     </div>
   );
 }

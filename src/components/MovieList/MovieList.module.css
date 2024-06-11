@@ -1,0 +1,7 @@
+.hotPink {
+  color: black;
+  font-size: 18px;
+}
+.hotPink:hover {
+  color: #d90166;
+}
