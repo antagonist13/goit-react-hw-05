@@ -15,7 +15,8 @@ export default function MoviesPage() {
     async function handleSearchedMovies() {
       try {
       const list = await getSearchedMovies(locationQuery)
-      setSearchingMovies(list.data.results)
+        setSearchingMovies(list.data.results)
+        
     } catch(error) {
       console.log(error);
       }
