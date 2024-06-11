@@ -26,7 +26,7 @@ export default function MovieCast() {
         <ul>
           {movieCast.map((person) => (
             <li key={person.cast_id}>
-              <img src={`https://image.tmdb.org/t/p/w200${person.profile_path}`} alt={`Photo of actor: ${person.name}`} />
+              <img src={`https://image.tmdb.org/t/p/w300${person.profile_path}`} alt={`Photo of actor: ${person.name}`} />
               <p>{person.name}</p>
               <p>{`Character: ${person.character}`}</p>
             </li>
