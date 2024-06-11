@@ -27,7 +27,6 @@ export default function MovieDetailsPage() {
     }, [movie])
   
   return (<>{movie && <div >
-    <h1>MOVIE</h1>
     <button><Link to={backLinkRef.current}>Go back</Link></button>
     <div>
       <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`Poster of the film: ${movie.title}`} />
@@ -46,10 +45,8 @@ export default function MovieDetailsPage() {
         <li>
           <Link to="cast">
             Cast</Link></li>
-        <li><Link to={{
-          pathname: "reviews",
-          state: { movieId }
-          }}>Reviews</Link></li>
+        <li><Link to="reviews">
+            Reviews</Link></li>
       </ul>
     </div>
     <Outlet />

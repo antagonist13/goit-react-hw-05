@@ -1,9 +1,9 @@
-
+import { Link, useLocation } from 'react-router-dom';
 import { getTrendingMovies } from '../../movies-api'
 import { useEffect, useState } from 'react';
 export default function HomePage() {
   const [trendMovies, setTrendMovies] = useState([]);
-
+  const location = useLocation();
   useEffect(() => {
     async function getMoviesInfo() {
       try {
@@ -20,8 +20,10 @@ export default function HomePage() {
     <ul>
       {trendMovies.map((movie) => (
         <li key={movie.id}>
-          <p>{movie.title}</p>
-        </li>
+          <Link to={`/movies/${movie.id}`} state={location}>
+              <p>{movie.title}</p>
+              </Link>
+          </li>
       ))}
     </ul>
 </div>
