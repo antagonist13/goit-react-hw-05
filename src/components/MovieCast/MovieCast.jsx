@@ -12,7 +12,6 @@ export default function MovieCast() {
       try {
         const list = await getMovieCredits(movieId);
         setMovieCast(list.data.cast);
-        console.log(list.data.cast);
       } catch (error) {
         console.log(error);
       }

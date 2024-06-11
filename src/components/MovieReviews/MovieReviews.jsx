@@ -12,7 +12,6 @@ export default function MovieReviews() {
       try {
         const list = await getMovieReviews(movieId);
         setMovieReviews(list.data.results);
-        console.log(list.data.results);
       } catch (error) {
         console.log(error);
       } finally {
