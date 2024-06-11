@@ -5,7 +5,9 @@ import { getMovieReviews } from '../../movies-api';
 export default function MovieReviews() {
   const { movieId } = useParams();
   const [movieReviews, setMovieReviews] = useState([]);
-    useEffect(() => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
     async function handleMovieReviews() {
       try {
         const list = await getMovieReviews(movieId);
@@ -13,25 +15,32 @@ export default function MovieReviews() {
         console.log(list.data.results);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     }
 
     handleMovieReviews();
-    }, [movieId]);
-  
-  return     <div>
+  }, [movieId]);
+
+  if (isLoading) {
+    return <p>Loading information...</p>;
+  }
+
+  return (
+    <div>
       {movieReviews.length > 0 ? (
         <ul>
           {movieReviews.map((review) => (
             <li key={review.id}>
-              
               <h4>{`Author: ${review.author}`}</h4>
               <p>{review.content}</p>
             </li>
           ))}
         </ul>
       ) : (
-        <p>We don`t have any reviws for this movie.</p>
+        <p>We don’t have any reviews for this movie.</p>
       )}
     </div>
+  );
 }

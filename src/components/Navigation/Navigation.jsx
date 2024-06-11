@@ -19,6 +19,7 @@ export default function Navigation() {
             Movies
           </NavLink>
         </li>
-      </ul>
+    </ul>
+    <hr />
     </nav>
 }

@@ -2,6 +2,7 @@ import { Field, Form, Formik } from "formik";
 import { useState, useEffect } from "react";
 import { getSearchedMovies } from '../../movies-api'
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
+import css from './MoviesPage.module.css'
 
 export default function MoviesPage() {
   const location = useLocation();
@@ -48,15 +49,16 @@ export default function MoviesPage() {
             autoComplete="off"
             autoFocus
             name="query"
+            className={css.searchInput}
           />
-          <button type="submit">Search</button>
+          <button type="submit" className={css.searchBtn}>Search</button>
         </Form>
       </Formik>
       <ul>
         {searchingMovies.map((movie) => (
           <li key={movie.id}>
             <Link to={`/movies/${movie.id}`} state={location}>
-              <p>{movie.title}</p>
+              <p className={css.movie}>{movie.title}</p>
               </Link>
           </li>
         ))}

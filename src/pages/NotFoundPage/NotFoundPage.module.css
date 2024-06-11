@@ -1,0 +1,8 @@
+.goHome {
+  color: black;
+  font-size: 18px;
+  text-decoration: underline;
+}
+.goHome:hover {
+  color: #d90166;
+}
