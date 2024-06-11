@@ -1,65 +1,65 @@
 import { Field, Form, Formik } from "formik";
 import { useState, useEffect } from "react";
 import { getSearchedMovies } from '../../movies-api'
-import { useSearchParams } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 
 export default function MoviesPage() {
   const location = useLocation();
   const searchLocationParams = new URLSearchParams(location.search);
   const locationQuery = searchLocationParams.get('query');
-  console.log(locationQuery);
 
   const [searchingMovies, setSearchingMovies] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('')
-  const [searchParms, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     async function handleSearchedMovies() {
-    try {
-      const list = await getSearchedMovies(searchQuery)
+      try {
+      const list = await getSearchedMovies(locationQuery)
       setSearchingMovies(list.data.results)
     } catch(error) {
       console.log(error);
+      }
     }
+    if (locationQuery) {
+      handleSearchedMovies();
     }
-    handleSearchedMovies()
-
-  }, [searchQuery])
+  }, [locationQuery])
 
   const handleSubmit = (query) => {
-      searchParms.set('query', query)
-      setSearchParams(searchParms)
-      setSearchQuery(query)
-      getSearchedMovies(searchQuery)
-}
-  return <div>
-    <Formik
-      initialValues={{ query: "" }}
-      onSubmit={(values) => {
-        if (values.query.trim(' ')) {
-          handleSubmit(values.query)
-        } else {
-          console.log('ERROR')
-        }
-      }}
-    >
-    <Form>
-        <Field
-          type="text"
-          autoComplete="off"
-          autoFocus
-          name="query">
-          </Field>
-        <button type="submit">Search</button>
-      </Form>
-    </Formik>
-        <ul>
-      {searchingMovies.map((movie) => (
-        <li key={movie.id}>
-          <p>{movie.title}</p>
-        </li>
-      ))}
-    </ul>
-</div>
+    if (query.trim()) {
+      searchParams.set('query', query);
+      setSearchParams(searchParams);
+    } else {
+      console.log('ERROR');
+    }
+  };
+  return (
+    <div>
+      <Formik
+        initialValues={{ query: locationQuery || "" }}
+        onSubmit={(values) => {
+          handleSubmit(values.query);
+        }}
+      >
+        <Form>
+          <Field
+            type="text"
+            autoComplete="off"
+            autoFocus
+            name="query"
+          />
+          <button type="submit">Search</button>
+        </Form>
+      </Formik>
+      <ul>
+        {searchingMovies.map((movie) => (
+          <li key={movie.id}>
+            <Link to={`/movies/${movie.id}`} state={location}>
+              <p>{movie.title}</p>
+              </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
