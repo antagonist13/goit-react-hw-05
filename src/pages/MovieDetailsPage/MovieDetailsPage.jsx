@@ -3,6 +3,7 @@ import {
   Link,
   useLocation,
   useParams,
+  Outlet,
 } from 'react-router-dom';
 import { getMovieDetails } from '../../movies-api'
 export default function MovieDetailsPage() {
@@ -16,7 +17,6 @@ export default function MovieDetailsPage() {
       try {
       const list = await getMovieDetails(movieId)
         setMovie(list.data)
-        console.log(list.data);
     } catch(error) {
       console.log(error);
       }
@@ -43,10 +43,16 @@ export default function MovieDetailsPage() {
     <div>
       <p>Additional information</p>
       <ul>
-        <li></li>
-        <li></li>
+        <li>
+          <Link to="cast">
+            Cast</Link></li>
+        <li><Link to={{
+          pathname: "reviews",
+          state: { movieId }
+          }}>Reviews</Link></li>
       </ul>
     </div>
+    <Outlet />
 </div>}
 </>) 
 }
