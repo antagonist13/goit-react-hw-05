@@ -23,10 +23,8 @@ export default function MovieDetailsPage() {
       console.log(error);
       }
       }
-      if (movie == null) {
         handleMovieById();
-      }
-    }, [movie])
+    }, [movieId])
   
   return (<>{movie && <div >
     <button className={css.returnBtn}><Link to={backLinkRef.current}>Go back</Link></button>
